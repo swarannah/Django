@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
+    <div class="container">
+        <h1>Login</h1>
+        <hr>
+
+        <label for="username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="{{ form.username.name }}" id="{{ form.username.name }}">
+        {% if form.username.errors %}
+        <span class="text-danger">{{ form.username.errors }}</span>
+        {% endif %}
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="{{ form.password.name }}"
+            id="{{ form.password.name }}">
+        <span class="text-danger">{{ form.password.errors }}</span>
+        
+        <button type="submit" class="registerbtn">Login</button>
+    </div>
+
+    <div class="container signin">
+        <p>Create an account <a href="{% url 'register' %}">Sign Up</a></p>
+    </div>
+</form>
+{% endblock %}
